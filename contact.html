@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Liên Hệ Hoàn Chỉnh</title>
+    <style>
+      /* CSS Trang trí giúp form bắt mắt, hiện đại và chuẩn bố cục */
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+      }
+
+      main {
+        max-width: 700px;
+        margin: 30px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #1a73e8;
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      fieldset {
+        border: 1px solid #dcdcdc;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #fafbfc;
+      }
+
+      legend {
+        font-weight: bold;
+        color: #1a73e8;
+        background-color: #e8f0fe;
+        padding: 6px 12px;
+        border: 1px solid #d2e3fc;
+        border-radius: 4px;
+      }
+
+      label {
+        display: block;
+        margin-top: 12px;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #333333;
+        font-size: 14px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 14px;
+        transition:
+          border-color 0.3s,
+          box-shadow 0.3s;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #1a73e8;
+        box-shadow: 0 0 5px rgba(26, 115, 232, 0.3);
+        outline: none;
+      }
+
+      /* Nhóm radio button nằm cùng hàng */
+      .radio-group {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-top: 5px;
+      }
+
+      .radio-group label {
+        display: inline;
+        font-weight: normal;
+        cursor: pointer;
+      }
+
+      .radio-group input {
+        margin-right: 5px;
+        cursor: pointer;
+      }
+
+      /* Checkbox điều khoản */
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 15px;
+        font-weight: normal;
+      }
+
+      .checkbox-container input {
+        cursor: pointer;
+      }
+
+      /* Nút bấm */
+      button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button[type="submit"] {
+        background-color: #1a73e8;
+        color: white;
+        margin-right: 10px;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #1557b0;
+      }
+
+      button[type="reset"] {
+        background-color: #f1f3f4;
+        color: #5f6368;
+      }
+
+      button[type="reset"]:hover {
+        background-color: #e8eaed;
+      }
+    </style>
+  </head>
+  
+  <nav>
+    <a href="index.html">Trang chủ</a> | <a href="about.html">Giới thiệu</a> |
+    <a href="contact.html">Liên hệ</a> |
+    <a
+      href="https://github.com/hihihhi123/my-website"
+      target="_blank"
+      rel="noopener"
+      >GitHub</a
+    >
+  </nav>
+
+  <body>
+    <main>
+      <section>
+        <h2>Liên hệ với tôi</h2>
+
+        <form action="#" method="POST">
+          <!-- Fieldset 1: Thông tin cá nhân -->
+          <fieldset>
+            <legend>Thông tin cá nhân</legend>
+
+            <label for="fullname">Họ và tên: *</label>
+            <input
+              type="text"
+              id="fullname"
+              name="fullname"
+              placeholder="Nhập họ tên đầy đủ"
+              required
+              minlength="2"
+              maxlength="100"
+            />
+
+            <label for="email">Email: *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="example@gmail.com"
+              required
+            />
+
+            <label for="phone">Số điện thoại:</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="09xx xxx xxx"
+              pattern="[0-9]{10,11}"
+              title="Nhập 10-11 chữ số"
+            />
+          </fieldset>
+
+          <!-- Fieldset 2: Nội dung liên hệ -->
+          <fieldset>
+            <legend>Nội dung liên hệ</legend>
+
+            <label for="subject">Chủ đề:</label>
+            <select id="subject" name="subject">
+              <option value="">-- Chọn chủ đề --</option>
+              <option value="support">Hỗ trợ kỹ thuật</option>
+              <option value="study">Học tập / Trao đổi</option>
+              <option value="other">Khác</option>
+            </select>
+
+            <label>Ưu tiên liên hệ qua:</label>
+            <div class="radio-group">
+              <div>
+                <input
+                  type="radio"
+                  id="via-email"
+                  name="contact-via"
+                  value="email"
+                  checked
+                />
+                <label for="via-email">Email</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="via-phone"
+                  name="contact-via"
+                  value="phone"
+                />
+                <label for="via-phone">Điện thoại</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="via-zalo"
+                  name="contact-via"
+                  value="zalo"
+                />
+                <label for="via-zalo">Zalo</label>
+              </div>
+            </div>
+
+            <label for="message">Tin nhắn: *</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Nhập nội dung tin nhắn..."
+              required
+              minlength="10"
+              maxlength="500"
+            ></textarea>
+
+            <div class="checkbox-container">
+              <input type="checkbox" id="agree" name="agree" required />
+              <label for="agree" style="margin: 0"
+                >Tôi đồng ý với
+                <a href="#" style="color: #1a73e8; text-decoration: none"
+                  >điều khoản sử dụng</a
+                >
+                *</label
+              >
+            </div>
+          </fieldset>
+
+          <!-- Các nút chức năng -->
+          <button type="submit">Gửi tin nhắn</button>
+          <button type="reset">Xoá và nhập lại</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
