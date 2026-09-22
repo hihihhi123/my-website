@@ -1,100 +1,59 @@
 <!doctype html>
 <html lang="vi">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nguyễn Tấn Hoàng – Trang chủ</title>
-    <meta
-      name="description"
-      content="Portfolio cá nhân của Hoàng, sinh viên Công nghệ thông tin tại ĐH Gia Định. Khám phá các dự án lập trình web với HTML5, CSS3 và JavaScript."
-    />
-    <meta name="author" content="Hoang" />
-    <meta
-      name="keywords"
-      content="portfolio, sinh viên, lập trình web, HTML5, CSS3"
-    />
-    <meta property="og:title" content="Hoàng - Portfolio Cá Nhân" />
-    <meta
-      property="og:description"
-      content="Khám phá portfolio và các dự án lập trình web của Hoàng tại ĐH Gia Định."
-    />
-    <meta property="og:type" content="website" />
+    <title>Nguyễn Tấn Hoàng - Trang chủ</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Trang chủ của Nguyễn Tấn Hoàng - Sinh viên đam mê lập trình Java và hệ thống quản lý." />
+    <meta name="author" content="Nguyễn Tấn Hoàng" />
+    <meta name="keywords" content="Nguyễn Tấn Hoàng, portfolio, sinh viên CNTT, lập trình Java" />
+    <meta property="og:title" content="Trang chủ - Nguyễn Tấn Hoàng" />
+    <meta property="og:description" content="Chào mừng đến với không gian chia sẻ kiến thức và dự án lập trình của tôi." />
+    
+    <!-- Google Fonts & CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
-  </head>
-
-  <body>
+</head>
+<body>
     <header>
-      <h1>Nguyễn Tấn Hoàng</h1>
-      <p>
-        Chào mừng đến với không gian học tập và thực hành lập trình Web của tôi.
-      </p>
+        <h1 id="main-title">Trang chủ Cá Nhân</h1>
+        <p>Nơi lưu trữ các dự án học tập và chia sẻ kiến thức công nghệ.</p>
+        <nav>
+            <a href="index.html">Trang chủ</a>
+            <a href="about.html">Giới thiệu</a>
+            <a href="contact.html">Liên hệ</a>
+            <a href="https://github.com/hihihhi123/my-website" target="_blank">GitHub</a>
+        </nav>
     </header>
 
-    <!-- Yêu cầu 13: Thêm link GitHub với target="_blank" rel="noopener" -->
-    <nav>
-      <a href="index.html">Trang chủ</a> | <a href="about.html">Giới thiệu</a> |
-      <a href="contact.html">Liên hệ</a> |
-      <a
-        href="https://github.com/hihihhi123/my-website"
-        target="_blank"
-        rel="noopener"
-        >GitHub</a
-      >
-    </nav>
-    <body>
-      <main>
-        <section>
-          <h2>Chào mừng bạn đến với trang web của tôi</h2>
-          <p>
-            Tôi là sinh viên ngành Công nghệ thông tin tại Trường Đại học Gia
-            Định[cite: 9, 12]. Nơi đây tổng hợp các bài tập thực hành lập trình
-            web của tôi.
-          </p>
-        </section>
-      </main>
-    </body>
-
     <main>
-      <section>
-        <h2>Mục tiêu học tập</h2>
-        <p>
-          Trong học kỳ này, tôi đang tập trung nâng cao kiến thức về Đại số
-          tuyến tính và cải thiện kỹ năng Tiếng Anh thông qua các bài tập thực
-          hành thường xuyên.
-        </p>
-      </section>
-
-      <section>
-        <h2>Dự án cá nhân</h2>
-        <ul>
-          <li>
-            <strong>AI Copywriter:</strong> Xây dựng nền tảng hỗ trợ viết nội
-            dung chuẩn marketing.
-          </li>
-          <li>
-            <strong>Quản lý giao dịch:</strong> Ứng dụng Java hỗ trợ quản lý
-            giao dịch vàng và tiền tệ.
-          </li>
-        </ul>
-      </section>
+        <section class="card">
+            <h2>Chào mừng đến với website của tôi!</h2>
+            <p>
+                Xin chào, tôi là <strong>Nguyễn Tấn Hoàng</strong>. Trang web này được xây dựng để lưu trữ các bài tập thực hành Web (HTML/CSS), đồng thời là nơi tôi chia sẻ lộ trình phát triển kỹ năng lập trình của mình.
+            </p>
+        </section>
+        
+        <section class="card">
+            <h2>Định hướng & Đam mê</h2>
+            <p>
+                Tôi đang tập trung trau dồi các kiến thức cốt lõi về lập trình Backend với Java để xây dựng các hệ thống quản lý giao dịch mạnh mẽ. 
+            </p>
+            <p>
+                Ngoài ra, tôi cũng dành sự quan tâm lớn cho các công nghệ tự động hóa, đặc biệt là tiềm năng của các công cụ AI Copywriter trong việc tối ưu hóa nội dung marketing.
+            </p>
+        </section>
     </main>
 
-    <!-- Yêu cầu 12: Thêm liên kết mailto: và tel: dùng <address> -->
     <footer>
-      <address>
-        Email:
-        <a href="mailto:nguyentanhoang@example.com"
-          >nguyentanhoang@example.com</a
-        ><br />
-        Điện thoại: <a href="tel:0123456789">0123 456 789</a>
-      </address>
-      <p>
-        &copy; 2026 Bản quyền thuộc về Nguyễn Tấn Hoàng. Ngày cập nhật:
-        <time datetime="2026-06-01">01/06/2026</time>
-      </p>
+        <p>&copy; 2026 Bản quyền thuộc về Nguyễn Tấn Hoàng.</p>
+        <address>
+            Email: <a href="mailto:nguyentanhoang@example.com">nguyentanhoang@example.com</a>
+        </address>
     </footer>
-    <footer>
-      <p>&copy; 2026 Hoàng - ĐH Gia Định</p>
-    </footer>
-  </body>
-</html>
+</body>
+</html> 

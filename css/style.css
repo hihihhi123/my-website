@@ -1,36 +1,157 @@
-/* Reset CSS */
-* {
+/* === CSS RESET === */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Body typography & background */
+/* === BASE === */
 body {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   background-color: #f4f7fb;
   color: #1e293b;
   line-height: 1.6;
 }
 
-/* Header styling */
+p {
+  color: #334155;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+/* === SELECTORS === */
+.highlight {
+  background: #fef3c7;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+#main-title {
+  font-size: 2rem;
+  color: #1a2e5a;
+}
+a {
+  color: #1d6fa4;
+  text-decoration: none;
+}
+a:hover {
+  color: #0d9488;
+  text-decoration: underline;
+}
+
+/* === HEADER === */
 header {
   background-color: #1a2e5a;
   padding: 16px 32px;
   color: white;
 }
+header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+header nav a {
+  color: #93c5fd;
+  margin-left: 20px;
+  font-weight: 500;
+}
+header nav a:hover {
+  color: white;
+}
 
-/* Main container layout */
+/* === MAIN & CARD === */
 main {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 32px 16px;
 }
-
-/* Card component styling */
 .card {
   background: white;
-  padding: 24px;
+  padding: 24px 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+}
+.card h2 {
+  color: #1a2e5a;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 8px;
+}
+.card h3 {
+  color: #334155;
+  margin: 16px 0 8px 0;
+}
+
+/* === LISTS (Danh sách) === */
+ul,
+ol {
+  margin-left: 24px;
+  margin-bottom: 16px;
+  color: #334155;
+}
+li {
+  margin-bottom: 8px;
+}
+dl dt {
+  font-weight: bold;
+  color: #1e293b;
+  margin-top: 12px;
+}
+dl dd {
+  margin-left: 16px;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+/* === HÌNH ẢNH (Figure) === */
+figure {
+  text-align: center;
+  margin: 16px 0;
+}
+figure img {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
+}
+figcaption {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* === TABLE (Bảng biểu) === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+th,
+td {
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+  text-align: center;
+}
+th {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+caption {
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #1a2e5a;
+  font-size: 1.1rem;
+}
+
+/* === FOOTER === */
+footer {
+  background-color: #1e293b;
+  color: #94a3b8;
+  text-align: center;
+  padding: 24px 32px;
+  margin-top: 48px;
 }
