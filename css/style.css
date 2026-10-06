@@ -1,141 +1,316 @@
+/* =========================================================
+   1. RESET & GLOBAL STYLES
+   ========================================================= */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   background-color: #f8fafc;
   color: #334155;
   line-height: 1.6;
 }
 
+/* =========================================================
+   2. HEADER & NAVBAR (FLEXBOX)
+   ========================================================= */
 header {
   background-color: #1a2e5a;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .logo {
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
   text-decoration: none;
+  letter-spacing: -0.5px;
 }
 
 .nav-links {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .nav-links a {
-  color: #93c5fd;
+  color: #cbd5e1;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-  color: #ffffff;
+  color: #38bdf8;
 }
 
+/* =========================================================
+   3. HERO SECTION (TRANG CHỦ)
+   ========================================================= */
 .hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 280px;
-  background-color: #1d6fa4;
-  color: #ffffff;
+  background: linear-gradient(135deg, #1a2e5a 0%, #1d6fa4 100%);
+  color: white;
+  padding: 60px 20px;
   text-align: center;
-  gap: 16px;
-  padding: 40px 20px;
+  margin-bottom: 32px;
 }
 
 .hero h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
+  margin-bottom: 12px;
 }
 
 .hero p {
-  max-width: 650px;
   font-size: 1.1rem;
-  color: #e0f2fe;
+  max-width: 650px;
+  margin: 0 auto 24px auto;
+  color: #e2e8f0;
 }
 
 .btn-primary {
   display: inline-block;
-  background-color: #ffffff;
-  color: #1a2e5a;
-  padding: 10px 24px;
+  background-color: #38bdf8;
+  color: #0f172a;
+  padding: 12px 24px;
   border-radius: 6px;
-  text-decoration: none;
   font-weight: 700;
-  transition: background-color 0.3s;
+  text-decoration: none;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
 }
 
 .btn-primary:hover {
-  background-color: #e2e8f0;
+  background-color: #7dd3fc;
+  transform: translateY(-2px);
 }
 
-.cards-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 50px 24px;
-}
-
-.section-title {
-  text-align: center;
-  color: #1a2e5a;
-  margin-bottom: 32px;
-  font-size: 1.8rem;
-}
-
-.cards-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
+/* =========================================================
+   4. CARDS & GENERAL COMPONENTS
+   ========================================================= */
 .card {
-  flex: 1;
-  min-width: 260px;
   background-color: #ffffff;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
   border: 1px solid #e2e8f0;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
 }
 
-.card h3 {
+.card h2 {
   color: #1a2e5a;
-  margin-bottom: 12px;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
 }
 
-.card p {
-  color: #475569;
+/* BẢNG THỜI KHÓA BIỂU & ĐIỂM SỐ */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
+.styled-table caption {
+  caption-side: top;
+  font-style: italic;
+  margin-bottom: 8px;
+  color: #64748b;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.styled-table thead tr {
+  background-color: #1a2e5a;
+  color: #ffffff;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f8fafc;
+}
+
+/* =========================================================
+   5. BÀI TẬP 03: CSS GRID & RESPONSIVE MOBILE-FIRST
+   ========================================================= */
+
+/* --- 5.1 MOBILE FIRST (Mặc định cho màn hình < 768px) --- */
+.page-layout {
+  display: grid; /* Bật Grid mặc định để DevTools nhận diện ngay */
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* Sidebar ẩn trên Mobile */
+.sidebar {
+  display: none;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  align-self: start;
+  position: sticky;
+  top: 80px;
+}
+
+.sidebar h3 {
+  font-size: 1.1rem;
+  color: #1a2e5a;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #38bdf8;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul a {
+  color: #1d6fa4;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.sidebar ul a:hover {
+  color: #1a2e5a;
+  text-decoration: underline;
+}
+
+/* Mobile Nav bar xếp dọc */
+@media (max-width: 767px) {
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 12px;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}
+
+/* Skills Grid trên Mobile (1 Cột) */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.skill-card {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 18px;
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid #1d6fa4;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.skill-card h3 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+  color: #1a2e5a;
+}
+
+.skill-card p {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* --- 5.2 TABLET (Màn hình >= 768px) --- */
+@media (min-width: 768px) {
+  .page-layout {
+    grid-template-columns: 200px 1fr; /* Bố cục 2 Cột */
+    gap: 28px;
+  }
+
+  .sidebar {
+    display: block; /* Hiện Sidebar */
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr); /* Lưới kỹ năng 2 Cột */
+  }
+}
+
+/* --- 5.3 DESKTOP (Màn hình >= 1024px) --- */
+@media (min-width: 1024px) {
+  .page-layout {
+    grid-template-columns: 240px 1fr; /* Tăng chiều rộng Sidebar */
+    gap: 32px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(200px, 1fr)
+    ); /* Tự động chia cột co giãn */
+  }
+}
+
+/* =========================================================
+   6. FOOTER (FLEXBOX)
+   ========================================================= */
 footer {
+  background-color: #0f172a;
+  color: #94a3b8;
+  padding: 24px 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 32px;
-  background-color: #0f172a;
-  color: #94a3b8;
+  flex-wrap: wrap;
+  gap: 12px;
   font-size: 0.9rem;
-}
-
-footer address {
-  font-style: normal;
+  margin-top: 40px;
 }
 
 footer a {

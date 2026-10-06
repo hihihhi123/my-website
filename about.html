@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nguyễn Tấn Hoàng - Giới thiệu</title>
+    <title>Giới thiệu - Nguyễn Tấn Hoàng</title>
 
     <!-- SEO Meta Tags -->
     <meta
@@ -14,11 +14,6 @@
     <meta
       name="keywords"
       content="Nguyễn Tấn Hoàng, sinh viên CNTT, lập trình Java, HTML5, CSS3, AI Copywriter"
-    />
-    <meta property="og:title" content="Giới thiệu - Nguyễn Tấn Hoàng" />
-    <meta
-      property="og:description"
-      content="Khám phá kỹ năng, định hướng phát triển và lộ trình học tập của Nguyễn Tấn Hoàng."
     />
 
     <!-- Google Fonts & CSS Link -->
@@ -31,7 +26,7 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- PHẦN 1: NAVBAR (FLEXBOX) -->
+    <!-- PHẦN 1: NAVBAR (Nằm ngoài page-layout) -->
     <header>
       <div class="navbar">
         <a href="index.html" class="logo">Nguyễn Tấn Hoàng</a>
@@ -46,182 +41,168 @@
       </div>
     </header>
 
-    <main class="cards-container">
-      <!-- Khối 1: Về tôi -->
-      <section class="card" style="margin-bottom: 24px">
-        <h2>Về tôi</h2>
-        <figure style="margin: 16px 0; text-align: center">
-          <img
-            src="https://cellphones.com.vn/sforum/wp-content/uploads/2024/01/anh-meme-12.jpg"
-            alt="Ảnh chân dung sinh viên Nguyễn Tấn Hoàng"
-            width="300"
-            height="300"
-            style="border-radius: 8px; object-fit: cover"
-          />
-          <figcaption
-            style="font-style: italic; color: #64748b; margin-top: 6px"
-          >
-            Sinh viên Nguyễn Tấn Hoàng
-          </figcaption>
-        </figure>
-
-        <p>
-          Xin chào, tôi là Nguyễn Tấn Hoàng. Tôi có niềm đam mê mãnh liệt với
-          việc xây dựng các hệ thống cốt lõi (Backend), đặc biệt là đang rèn
-          luyện kỹ năng phát triển các ứng dụng quản lý giao dịch bằng ngôn ngữ
-          Java. Bên cạnh đó, tôi luôn quan tâm đến phần cứng, đặc biệt là cách
-          tối ưu hiệu năng và tản nhiệt cho các dòng laptop gaming để đảm bảo hệ
-          thống vận hành trơn tru nhất.
-        </p>
-        <p style="margin-top: 10px">
-          Để rèn luyện tư duy logic, tôi thường dành thời gian giải các bài toán
-          đại số tuyến tính và không gian đa thức phức tạp. Ngoài ra,
-          <span
-            style="
-              background-color: #fef08a;
-              padding: 2px 4px;
-              border-radius: 4px;
-            "
-            >tôi cũng rất thích nghiên cứu các nền tảng AI Copywriter</span
-          >
-          để ứng dụng công nghệ tự động hóa vào marketing.
-        </p>
-        <p style="margin-top: 10px">
-          Một chút sở thích cá nhân: tôi cực kỳ thích ngắm nhìn những chú mèo
-          lông ngắn màu trắng. Những lúc nghỉ ngơi sau khi làm bài tập ngữ pháp
-          Tiếng Anh, đó là cách giúp tôi thư giãn tuyệt vời.
-        </p>
-
-        <h3 style="margin-top: 16px; color: #1a2e5a">
-          Một số thuật ngữ chuyên môn:
-        </h3>
-        <dl style="margin-top: 8px">
-          <dt style="font-weight: bold; color: #1d6fa4">Frontend</dt>
-          <dd style="margin-left: 16px; margin-bottom: 8px">
-            Phát triển giao diện người dùng với HTML5 và CSS3.
-          </dd>
-
-          <dt style="font-weight: bold; color: #1d6fa4">Backend (Java)</dt>
-          <dd style="margin-left: 16px; margin-bottom: 8px">
-            Xây dựng logic xử lý và kiến trúc hệ thống quản lý giao dịch.
-          </dd>
-
-          <dt style="font-weight: bold; color: #1d6fa4">AI Copywriter</dt>
-          <dd style="margin-left: 16px">
-            Công cụ ứng dụng trí tuệ nhân tạo để tự động tạo nội dung.
-          </dd>
-        </dl>
-      </section>
-
-      <!-- Khối 2: Kỹ năng và Lộ trình -->
-      <section class="card" style="margin-bottom: 24px">
-        <h2>Kỹ năng & Lộ trình học tập</h2>
-        <h3 style="margin-top: 12px; color: #1a2e5a">Kỹ năng cốt lõi</h3>
-        <ul style="margin-left: 20px; margin-top: 8px">
-          <li>Lập trình Java (OOP & Cấu trúc dữ liệu)</li>
-          <li>HTML5 & CSS3 (Semantic, Box Model, Flexbox)</li>
-          <li>Sử dụng Git & GitHub để quản lý mã nguồn</li>
-          <li>Tư duy giải thuật và Đại số tuyến tính</li>
+    <!-- PHẦN 2: CẤU TRÚC GRID (PAGE LAYOUT) -->
+    <div class="page-layout">
+      <!-- SIDEBAR CỘT TRÁI -->
+      <aside class="sidebar">
+        <h3>Liên kết nhanh</h3>
+        <ul>
+          <li><a href="#gioi-thieu">Về tôi</a></li>
+          <li><a href="#ky-nang">Kỹ năng chuyên môn</a></li>
+          <li><a href="#bang-diem">Mục tiêu môn học</a></li>
+          <li><a href="#lich-hoc">Lịch học tập</a></li>
         </ul>
+      </aside>
 
-        <h3 style="margin-top: 16px; color: #1a2e5a">
-          Lộ trình học tập sắp tới
-        </h3>
-        <ol style="margin-left: 20px; margin-top: 8px">
-          <li>Nắm vững hệ thống thẻ Semantic và kỹ thuật CSS nâng cao.</li>
-          <li>Hoàn thiện dự án Java quản lý giao dịch cá nhân.</li>
-          <li>Củng cố ngữ pháp và rèn luyện từ vựng Tiếng Anh mỗi ngày.</li>
-        </ol>
-      </section>
+      <!-- KHỐI NỘI DUNG CHÍNH (MAIN) -->
+      <main>
+        <!-- Khối 1: Về tôi -->
+        <section class="card" id="gioi-thieu">
+          <h2>Về tôi</h2>
+          <figure style="margin: 16px 0; text-align: center">
+            <img
+              src="https://cellphones.com.vn/sforum/wp-content/uploads/2024/01/anh-meme-12.jpg"
+              alt="Ảnh chân dung sinh viên Nguyễn Tấn Hoàng"
+              width="260"
+              height="260"
+              style="
+                border-radius: 12px;
+                object-fit: cover;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              "
+            />
+            <figcaption
+              style="font-style: italic; color: #64748b; margin-top: 8px"
+            >
+              Sinh viên Nguyễn Tấn Hoàng
+            </figcaption>
+          </figure>
 
-      <!-- Khối 3: Bảng điểm -->
-      <section class="card" style="margin-bottom: 24px">
-        <h2>Mục tiêu môn học</h2>
-        <table class="styled-table">
-          <caption>
-            Bảng mục tiêu điểm số các môn học kỳ này
-          </caption>
-          <thead>
-            <tr>
-              <th>Môn học</th>
-              <th>Số tín chỉ</th>
-              <th>Điểm mục tiêu</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lập trình Web (HTML/CSS)</td>
-              <td>3</td>
-              <td>9.0</td>
-            </tr>
-            <tr>
-              <td>Lập trình Java</td>
-              <td>3</td>
-              <td>9.0</td>
-            </tr>
-            <tr>
-              <td>Đại số tuyến tính</td>
-              <td>2</td>
-              <td>8.5</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th colspan="2" style="text-align: right; padding-right: 20px">
-                Tổng số tín chỉ:
-              </th>
-              <td><strong>8</strong></td>
-            </tr>
-          </tfoot>
-        </table>
-      </section>
+          <p>
+            Xin chào, tôi là Nguyễn Tấn Hoàng. Tôi có niềm đam mê mãnh liệt với
+            việc xây dựng các hệ thống cốt lõi (Backend), đặc biệt là đang rèn
+            luyện kỹ năng phát triển các ứng dụng quản lý giao dịch bằng ngôn
+            ngữ Java.
+          </p>
+          <p style="margin-top: 10px">
+            Để rèn luyện tư duy logic, tôi thường dành thời gian giải các bài
+            toán đại số tuyến tính và không gian đa thức phức tạp. Bên cạnh đó,
+            tôi cũng rất thích nghiên cứu ứng dụng AI Copywriter vào tự động hóa
+            nội dung marketing.
+          </p>
+        </section>
 
-      <!-- Khối 4: Thời khóa biểu -->
-      <section class="card">
-        <h2>Lịch học tập dự kiến</h2>
-        <table class="styled-table">
-          <caption>
-            Thời khóa biểu cá nhân hàng tuần
-          </caption>
-          <thead>
-            <tr>
-              <th>Thứ</th>
-              <th>Buổi</th>
-              <th>Hoạt động</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td rowspan="2"><strong>Thứ 2</strong></td>
-              <td>Sáng</td>
-              <td>Học Lập trình Web (HTML5/CSS3)</td>
-            </tr>
-            <tr>
-              <td>Chiều</td>
-              <td>Thực hành viết mã Java</td>
-            </tr>
-            <tr>
-              <td><strong>Thứ 3</strong></td>
-              <td>Sáng</td>
-              <td>Giải bài tập Đại số tuyến tính & Tiếng Anh</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </main>
+        <!-- Khối 2: Kỹ năng & Lưới Skills Grid -->
+        <section class="card" id="ky-nang">
+          <h2>Kỹ năng & Lộ trình học tập</h2>
+          <p style="color: #64748b; font-size: 0.95rem">
+            Các kỹ năng công nghệ trọng tâm tôi đang tích cực trau dồi:
+          </p>
 
-    <!-- PHẦN 4: FOOTER (FLEXBOX) -->
+          <!-- LƯỚI KỸ NĂNG AUTO-FILL GRID -->
+          <div class="skills-grid">
+            <div class="skill-card">
+              <h3>Lập trình Java</h3>
+              <p>Thành thạo OOP, cấu trúc dữ liệu & logic hệ thống Backend.</p>
+            </div>
+            <div class="skill-card">
+              <h3>HTML5 & CSS3</h3>
+              <p>
+                Dựng giao diện chuẩn Semantic, Flexbox, CSS Grid & Responsive.
+              </p>
+            </div>
+            <div class="skill-card">
+              <h3>Git & GitHub</h3>
+              <p>Quản lý mã nguồn, làm việc theo nhánh và commit chuẩn hóa.</p>
+            </div>
+            <div class="skill-card">
+              <h3>Giải thuật & Toán học</h3>
+              <p>
+                Tư duy đại số tuyến tính, tản nhiệt & tối ưu phần cứng laptop.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Khối 3: Bảng điểm -->
+        <section class="card" id="bang-diem">
+          <h2>Mục tiêu môn học</h2>
+          <table class="styled-table">
+            <caption>
+              Bảng mục tiêu điểm số các môn học kỳ này
+            </caption>
+            <thead>
+              <tr>
+                <th>Môn học</th>
+                <th>Số tín chỉ</th>
+                <th>Điểm mục tiêu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lập trình Web (HTML/CSS)</td>
+                <td>3</td>
+                <td>9.0</td>
+              </tr>
+              <tr>
+                <td>Lập trình Java</td>
+                <td>3</td>
+                <td>9.0</td>
+              </tr>
+              <tr>
+                <td>Đại số tuyến tính</td>
+                <td>2</td>
+                <td>8.5</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Khối 4: Thời khóa biểu -->
+        <section class="card" id="lich-hoc">
+          <h2>Lịch học tập dự kiến</h2>
+          <table class="styled-table">
+            <caption>
+              Thời khóa biểu cá nhân hàng tuần
+            </caption>
+            <thead>
+              <tr>
+                <th>Thứ</th>
+                <th>Buổi</th>
+                <th>Hoạt động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2"><strong>Thứ 2</strong></td>
+                <td>Sáng</td>
+                <td>Học Lập trình Web (HTML5/CSS3)</td>
+              </tr>
+              <tr>
+                <td>Chiều</td>
+                <td>Thực hành viết mã Java</td>
+              </tr>
+              <tr>
+                <td><strong>Thứ 3</strong></td>
+                <td>Sáng</td>
+                <td>Giải bài tập Đại số tuyến tính & Tiếng Anh</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+
+    <!-- PHẦN 3: FOOTER (Nằm ngoài page-layout) -->
     <footer>
       <div class="copyright">
-        &copy; 2026 Bản quyền thuộc về Nguyễn Tấn Hoàng. Ngày cập nhật:
-        <time datetime="2026-06-01">01/06/2026</time>
+        &copy; 2026 Bản quyền thuộc về Nguyễn Tấn Hoàng.
       </div>
       <address class="footer-contacts">
         Email:
         <a href="mailto:nguyentanhoang@example.com"
           >nguyentanhoang@example.com</a
         >
-        | SĐT: <a href="tel:0123456789">0123 456 789</a>
       </address>
     </footer>
   </body>
