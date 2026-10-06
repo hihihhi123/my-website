@@ -1,59 +1,125 @@
 <!doctype html>
 <html lang="vi">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nguyễn Tấn Hoàng - Trang chủ</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Trang chủ của Nguyễn Tấn Hoàng - Sinh viên đam mê lập trình Java và hệ thống quản lý." />
+    <meta
+      name="description"
+      content="Trang chủ của Nguyễn Tấn Hoàng - Sinh viên đam mê lập trình Java và hệ thống quản lý."
+    />
     <meta name="author" content="Nguyễn Tấn Hoàng" />
-    <meta name="keywords" content="Nguyễn Tấn Hoàng, portfolio, sinh viên CNTT, lập trình Java" />
+    <meta
+      name="keywords"
+      content="Nguyễn Tấn Hoàng, portfolio, sinh viên CNTT, lập trình Java, HTML5, CSS3"
+    />
     <meta property="og:title" content="Trang chủ - Nguyễn Tấn Hoàng" />
-    <meta property="og:description" content="Chào mừng đến với không gian chia sẻ kiến thức và dự án lập trình của tôi." />
-    
+    <meta
+      property="og:description"
+      content="Chào mừng đến với không gian chia sẻ kiến thức và dự án lập trình của tôi."
+    />
+
     <!-- Google Fonts & CSS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+  </head>
+  <body>
+    <!-- PHẦN 1: NAVBAR -->
     <header>
-        <h1 id="main-title">Trang chủ Cá Nhân</h1>
-        <p>Nơi lưu trữ các dự án học tập và chia sẻ kiến thức công nghệ.</p>
-        <nav>
-            <a href="index.html">Trang chủ</a>
-            <a href="about.html">Giới thiệu</a>
-            <a href="contact.html">Liên hệ</a>
-            <a href="https://github.com/hihihhi123/my-website" target="_blank">GitHub</a>
+      <div class="navbar">
+        <a href="index.html" class="logo">Nguyễn Tấn Hoàng</a>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="about.html">Giới thiệu</a>
+          <a href="contact.html">Liên hệ</a>
+          <a href="https://github.com/hihihhi123/my-website" target="_blank"
+            >GitHub</a
+          >
         </nav>
+      </div>
     </header>
 
     <main>
-        <section class="card">
-            <h2>Chào mừng đến với website của tôi!</h2>
+      <!-- PHẦN 2: HERO SECTION -->
+      <section class="hero">
+        <h2>Chào mừng đến với website của tôi!</h2>
+        <p>
+          Nơi lưu trữ các bài tập thực hành Web (HTML/CSS), dự án Java và chia
+          sẻ lộ trình phát triển bản thân.
+        </p>
+        <a href="about.html" class="btn-primary">Tìm hiểu về tôi</a>
+      </section>
+
+      <!-- PHẦN 3: CARDS GRID -->
+      <section class="cards-container">
+        <h2 class="section-title">Kỹ năng & Định hướng công nghệ</h2>
+        <div class="cards-grid">
+          <!-- Ô HTML5 -->
+          <div class="card">
+            <h3>HTML5</h3>
             <p>
-                Xin chào, tôi là <strong>Nguyễn Tấn Hoàng</strong>. Trang web này được xây dựng để lưu trữ các bài tập thực hành Web (HTML/CSS), đồng thời là nơi tôi chia sẻ lộ trình phát triển kỹ năng lập trình của mình.
+              Xây dựng cấu trúc trang web chuẩn Semantic, tối ưu hóa SEO, kết
+              cấu nội dung mạch lạc và dễ bảo trì.
             </p>
-        </section>
-        
-        <section class="card">
-            <h2>Định hướng & Đam mê</h2>
+          </div>
+
+          <!-- Ô CSS3 -->
+          <div class="card">
+            <h3>CSS3 & Flexbox</h3>
             <p>
-                Tôi đang tập trung trau dồi các kiến thức cốt lõi về lập trình Backend với Java để xây dựng các hệ thống quản lý giao dịch mạnh mẽ. 
+              Thiết kế giao diện hiện đại, căn chỉnh layout linh hoạt với
+              Flexbox và phản hồi tốt trên mọi kích thước màn hình (Responsive).
             </p>
+          </div>
+
+          <!-- Ô Java -->
+          <div class="card">
+            <h3>Lập trình Java</h3>
             <p>
-                Ngoài ra, tôi cũng dành sự quan tâm lớn cho các công nghệ tự động hóa, đặc biệt là tiềm năng của các công cụ AI Copywriter trong việc tối ưu hóa nội dung marketing.
+              Tập trung trau dồi tư duy lập trình hướng đối tượng (OOP), cấu
+              trúc dữ liệu để xây dựng các hệ thống Backend quản lý giao dịch.
             </p>
-        </section>
+          </div>
+
+          <!-- Ô Tối ưu Phần cứng -->
+          <div class="card">
+            <h3>Tối ưu Phần cứng Laptop</h3>
+            <p>
+              Quan tâm đến hiệu năng, tản nhiệt các dòng laptop gaming giúp hệ
+              thống vận hành trơn tru nhất.
+            </p>
+          </div>
+
+          <!-- Ô Nghiên cứu AI Copywriter -->
+          <div class="card">
+            <h3>Nghiên cứu AI Copywriter</h3>
+            <p>
+              Khám phá tiềm năng của các công cụ AI Copywriter trong việc tự
+              động hóa và tối ưu hóa nội dung marketing.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
+    <!-- PHẦN 4: FOOTER -->
     <footer>
-        <p>&copy; 2026 Bản quyền thuộc về Nguyễn Tấn Hoàng.</p>
-        <address>
-            Email: <a href="mailto:nguyentanhoang@example.com">nguyentanhoang@example.com</a>
-        </address>
+      <div class="copyright">
+        &copy; 2026 Bản quyền thuộc về Nguyễn Tấn Hoàng.
+      </div>
+      <address class="footer-contacts">
+        Email:
+        <a href="mailto:nguyentanhoang@example.com"
+          >nguyentanhoang@example.com</a
+        >
+      </address>
     </footer>
-</body>
-</html> 
+  </body>
+</html>
