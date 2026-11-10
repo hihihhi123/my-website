@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ Thống Đặt Vé và Xem Phim - Film Cinemas</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+      }
+
+      /* Thanh topbar phía trên */
+      .top-bar {
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+      }
+      .top-bar-left {
+        color: #e50914;
+        font-weight: bold;
+      }
+      .top-bar-right {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      .top-bar-right a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        transition: color 0.2s;
+      }
+      .top-bar-right a:hover {
+        color: #e50914;
+      }
+      .admin-link {
+        color: #e50914 !important;
+      }
+
+      /* Header chính */
+      header {
+        background-color: #fff;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      .logo {
+        color: #e50914;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      .main-nav {
+        display: flex;
+        gap: 30px;
+        font-weight: bold;
+        color: #333;
+        font-size: 15px;
+      }
+      .main-nav span {
+        cursor: pointer;
+        padding: 6px 14px;
+        border-radius: 4px;
+        transition: all 0.2s;
+      }
+      .main-nav span:hover,
+      .main-nav span.active {
+        color: #e50914;
+        background: #fff1f2;
+      }
+
+      /* Banner phong cảnh nghệ thuật */
+      .banner {
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200")
+            no-repeat center center/cover;
+        color: white;
+        text-align: center;
+        padding: 70px 20px;
+        margin-bottom: 30px;
+      }
+      .banner h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .banner p {
+        font-size: 16px;
+        color: #eee;
+      }
+
+      /* Container nội dung */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto 50px auto;
+        padding: 0 20px;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid #e50914;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+      }
+      .section-header h2 {
+        color: #222;
+        font-size: 22px;
+      }
+
+      /* Lưới hiển thị phim với poster phong cảnh */
+      .movie-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 25px;
+      }
+      .movie-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        padding-bottom: 20px;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .movie-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+      }
+      .movie-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+      }
+      .movie-card h3 {
+        font-size: 17px;
+        margin: 15px 10px 5px;
+        color: #222;
+      }
+      .movie-card h3 a {
+        text-decoration: none;
+        color: #222;
+        transition: color 0.2s;
+      }
+      .movie-card h3 a:hover {
+        color: #e50914;
+      }
+      .movie-card p {
+        font-size: 13px;
+        color: #666;
+        margin: 0 0 15px;
+      }
+
+      .btn-book {
+        background-color: #e50914;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        transition: background 0.2s;
+      }
+      .btn-book:hover {
+        background-color: #b20710;
+      }
+
+      /* Khối thông tin bổ trợ hệ thống rạp */
+      .info-section {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        margin-top: 50px;
+      }
+      .info-section h3 {
+        color: #e50914;
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+      .info-section p {
+        color: #555;
+        line-height: 1.6;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      /* Footer trang web */
+      footer {
+        background-color: #222;
+        color: #aaa;
+        text-align: center;
+        padding: 30px;
+        font-size: 14px;
+        margin-top: 50px;
+      }
+      footer p {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Thanh Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+        🎬 HỆ THỐNG ĐẶT VÉ VÀ XEM PHIM CHẤT LƯỢNG CAO
+      </div>
+      <div class="top-bar-right">
+        <a href="membership.html">🎁 THÀNH VIÊN & ƯU ĐÃI</a>
+        <a href="admin.html" class="admin-link">👤 TRANG ADMIN</a>
+        <a href="login.html" id="authMenu">👤 ĐĂNG NHẬP</a>
+      </div>
+    </div>
+
+    <!-- Header chính -->
+    <header>
+      <div class="logo">FILM CINEMAS</div>
+      <div class="main-nav">
+        <span id="tabNow" class="active" onclick="switchTab('now')"
+          >PHIM ĐANG CHIẾU</span
+        >
+        <span id="tabSoon" onclick="switchTab('soon')">PHIM SẮP CHIẾU</span>
+        <a href="membership.html" style="text-decoration: none; color: inherit"
+          ><span>RẠP CHIẾU</span></a
+        >
+        <a href="membership.html" style="text-decoration: none; color: inherit"
+          ><span>CULTUREPLEX</span></a
+        >
+      </div>
+    </header>
+
+    <!-- Banner Phong Cảnh -->
+    <div class="banner">
+      <h1>Khám Phá Thế Giới Điện Ảnh & Thiên Nhiên</h1>
+      <p>
+        Tận hưởng những khung hình phong cảnh mãn nhãn và xem chi tiết phim
+        trước khi đặt vé!
+      </p>
+    </div>
+
+    <!-- Nội dung chính -->
+    <div class="container">
+      <div class="section-header">
+        <h2 id="sectionTitle">Phim Đang Chiếu (Poster Phong Cảnh)</h2>
+      </div>
+      <div class="movie-grid" id="movieGrid">
+        <!-- Danh sách phim được render tự động qua JavaScript -->
+      </div>
+
+      <!-- Khối thông tin giới thiệu -->
+      <div class="info-section">
+        <h3>Về Hệ Thống Film Cinemas</h3>
+        <p>
+          Film Cinemas là nền tảng đặt vé xem phim trực tuyến hiện đại, tích hợp
+          tính năng xem chi tiết phim, lựa chọn suất chiếu theo ngày (từ Thứ 2
+          đến Chủ Nhật), quản lý sơ đồ ghế ngồi thời gian thực và giao diện quản
+          trị viên toàn diện.
+        </p>
+        <p>
+          Trải nghiệm điện ảnh đỉnh cao nay nằm trong tầm tay bạn với quy trình
+          đặt vé trực tuyến mượt mà và trực quan nhất.
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        <strong>FILM CINEMAS SYSTEM</strong> - Đồ án môn học Quản lý & Đặt vé
+        xem phim
+      </p>
+      <p>Phát triển bởi Sinh viên thực hiện &copy; 2026</p>
+    </footer>
+
+    <!-- Script Xử Lý Giao Diện & Dữ Liệu -->
+    <script>
+      let currentTab = "now";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const currentUser = localStorage.getItem("currentUser");
+        const authMenu = document.getElementById("authMenu");
+
+        if (currentUser) {
+          authMenu.textContent = `👤 ${currentUser} (Đăng xuất)`;
+          authMenu.href = "#";
+          authMenu.style.color = "#e50914";
+
+          authMenu.onclick = (e) => {
+            e.preventDefault();
+            if (
+              confirm(`Bạn có muốn đăng xuất tài khoản "${currentUser}" không?`)
+            ) {
+              localStorage.removeItem("currentUser");
+              localStorage.removeItem("role");
+              alert("Đăng xuất thành công!");
+              window.location.reload();
+            }
+          };
+        }
+
+        loadMovies();
+      });
+
+      function switchTab(tab) {
+        currentTab = tab;
+        document.getElementById("tabNow").classList.remove("active");
+        document.getElementById("tabSoon").classList.remove("active");
+
+        if (tab === "now") {
+          document.getElementById("tabNow").classList.add("active");
+          document.getElementById("sectionTitle").textContent =
+            "Phim Đang Chiếu (Poster Phong Cảnh)";
+        } else {
+          document.getElementById("tabSoon").classList.add("active");
+          document.getElementById("sectionTitle").textContent =
+            "Phim Sắp Chiếu (Đặc Sắc)";
+        }
+        loadMovies();
+      }
+
+      function loadMovies() {
+        let nowShowing = [
+          {
+            id: 1,
+            title: "Chị Chị Em Em 3",
+            theater: "Film Aeon Bình Tân",
+            poster:
+              "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400",
+          },
+          {
+            id: 2,
+            title: "Lật Mặt 7",
+            theater: "Film CGV Sư Vạn Hạnh",
+            poster:
+              "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400",
+          },
+          {
+            id: 3,
+            title: "Mai - Trấn Thành",
+            theater: "Film Lotte Cinema",
+            poster:
+              "https://images.unsplash.com/photo-1448375240586-882707db888b?w=400",
+          },
+          {
+            id: 4,
+            title: "Đất Rừng Phương Nam",
+            theater: "Film Galaxy Kinh Dương Vương",
+            poster:
+              "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400",
+          },
+        ];
+
+        let comingSoon = [
+          {
+            id: 5,
+            title: "Avatar 3: Hỏa Tông Đồ",
+            theater: "Film CGV Sư Vạn Hạnh",
+            poster:
+              "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400",
+          },
+          {
+            id: 6,
+            title: "Avengers: Secret Wars",
+            theater: "Film Lotte Cinema",
+            poster:
+              "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400",
+          },
+        ];
+
+        let storedMovies = JSON.parse(localStorage.getItem("movies")) || [];
+        let activeList =
+          currentTab === "now" ? [...nowShowing, ...storedMovies] : comingSoon;
+
+        const grid = document.getElementById("movieGrid");
+        grid.innerHTML = "";
+
+        if (activeList.length === 0) {
+          grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #777;">Hiện chưa có phim nào trong danh mục này.</p>`;
+          return;
+        }
+
+        activeList.forEach((movie) => {
+          const card = document.createElement("div");
+          card.className = "movie-card";
+          // Điều hướng sang trang movie-detail.html kèm theo thông tin phim
+          const detailUrl = `movie-detail.html?title=${encodeURIComponent(movie.title)}&theater=${encodeURIComponent(movie.theater)}&poster=${encodeURIComponent(movie.poster)}`;
+
+          card.innerHTML = `
+                    <a href="${detailUrl}">
+                        <img src="${movie.poster}" alt="${movie.title}" onerror="this.src='https://via.placeholder.com/240x300?text=Phong+Cảnh'">
+                    </a>
+                    <h3><a href="${detailUrl}">${movie.title}</a></h3>
+                    <p>📍 ${movie.theater}</p>
+                    <a href="${detailUrl}" class="btn-book">Xem Chi Tiết & Đặt Vé</a>
+                `;
+          grid.appendChild(card);
+        });
+      }
+    </script>
+  </body>
+</html>

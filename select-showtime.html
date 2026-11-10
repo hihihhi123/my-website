@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chọn Suất Chiếu - Film Cinemas</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #141414 0%, #1f1f1f 100%);
+        color: #fff;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: rgba(20, 20, 20, 0.95);
+        border-bottom: 1px solid #333;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 22px;
+        color: #e50914;
+        letter-spacing: 1px;
+      }
+      .nav-links a {
+        color: #ccc;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+
+      .container {
+        max-width: 750px;
+        margin: 40px auto;
+        background: #1a1a1a;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid #333;
+      }
+      .movie-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+      .theater-info {
+        color: #aaa;
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      .section-box {
+        background: #242424;
+        border: 1px solid #383838;
+        padding: 22px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+      }
+      .section-box h3 {
+        font-size: 15px;
+        color: #e50914;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Lịch từ Thứ 2 đến Chủ Nhật dạng lưới ngang/cuộn đẹp mắt */
+      .date-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        gap: 10px;
+      }
+      .date-btn {
+        background: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 6px;
+        padding: 12px 8px;
+        color: #ddd;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .date-btn:hover {
+        background: #333;
+        border-color: #666;
+        color: #fff;
+      }
+      .date-btn.active {
+        background: #e50914;
+        color: white;
+        border-color: #e50914;
+        box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+      }
+
+      .time-grid {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .time-btn {
+        flex: 1;
+        min-width: 130px;
+        padding: 12px;
+        background: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 6px;
+        color: #ddd;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .time-btn:hover {
+        background: #333;
+        border-color: #666;
+        color: #fff;
+      }
+      .time-btn.active {
+        background: #e50914;
+        color: white;
+        border-color: #e50914;
+        box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+      }
+
+      .btn-next {
+        background-color: #e50914;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 15px;
+        transition: background 0.2s;
+        box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+      }
+      .btn-next:hover {
+        background-color: #b20710;
+      }
+      .btn-next:disabled {
+        background: #444;
+        color: #888;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🎬 FILM CINEMAS</h1>
+      <div class="nav-links">
+        <span id="userGreeting" style="color: #ffc107; font-weight: 600"></span>
+        <a href="index.html">← Trang Chủ</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="movie-title" id="displayMovieTitle">Đang tải tên phim...</div>
+      <div class="theater-info" id="displayTheater">
+        Đang tải thông tin rạp...
+      </div>
+
+      <!-- Chọn Ngày Chiếu (Từ Thứ 2 đến Chủ Nhật) -->
+      <div class="section-box">
+        <h3>Chọn Ngày Chiếu</h3>
+        <div class="date-grid" id="dateContainer">
+          <button
+            class="date-btn"
+            onclick="selectDate(this, 'Thứ Hai (02/11/2026)')"
+          >
+            Thứ Hai<br /><span style="font-size: 11px; color: #aaa">02/11</span>
+          </button>
+          <button
+            class="date-btn"
+            onclick="selectDate(this, 'Thứ Ba (03/11/2026)')"
+          >
+            Thứ Ba<br /><span style="font-size: 11px; color: #aaa">03/11</span>
+          </button>
+          <button
+            class="date-btn"
+            onclick="selectDate(this, 'Thứ Tư (04/11/2026)')"
+          >
+            Thứ Tư<br /><span style="font-size: 11px; color: #aaa">04/11</span>
+          </button>
+          <button
+            class="date-btn"
+            onclick="selectDate(this, 'Thứ Năm (05/11/2026)')"
+          >
+            Thứ Năm<br /><span style="font-size: 11px; color: #aaa">05/11</span>
+          </button>
+          <button
+            class="date-btn"
+            onclick="selectDate(this, 'Thứ Sáu (06/11/2026)')"
+          >
+            Thứ Sáu<br /><span style="font-size: 11px; color: #aaa">06/11</span>
+          </button>
+          <button
+            class="date-btn"
+            onclick="selectDate(this, 'Thứ Bảy (07/11/2026)')"
+          >
+            Thứ Bảy<br /><span style="font-size: 11px; color: #aaa">07/11</span>
+          </button>
+          <button
+            class="date-btn"
+            onclick="selectDate(this, 'Chủ Nhật (08/11/2026)')"
+          >
+            Chủ Nhật<br /><span style="font-size: 11px; color: #aaa"
+              >08/11</span
+            >
+          </button>
+        </div>
+      </div>
+
+      <!-- Chọn Suất Chiếu (Giờ) -->
+      <div class="section-box">
+        <h3>Chọn Suất Chiếu</h3>
+        <div class="time-grid" id="timeContainer">
+          <button class="time-btn" onclick="selectTime(this, '09:30')">
+            09:30<br /><span style="font-size: 11px; color: #aaa"
+              >Suất Sáng</span
+            >
+          </button>
+          <button class="time-btn" onclick="selectTime(this, '14:15')">
+            14:15<br /><span style="font-size: 11px; color: #aaa"
+              >Suất Chiều</span
+            >
+          </button>
+          <button class="time-btn" onclick="selectTime(this, '19:00')">
+            19:00<br /><span style="font-size: 11px; color: #aaa"
+              >Suất Tối</span
+            >
+          </button>
+          <button class="time-btn" onclick="selectTime(this, '22:10')">
+            22:10<br /><span style="font-size: 11px; color: #aaa"
+              >Suất Đêm</span
+            >
+          </button>
+        </div>
+      </div>
+
+      <button
+        class="btn-next"
+        id="btnNext"
+        disabled
+        onclick="goToSeatSelection()"
+      >
+        Tiếp Tục Chọn Ghế →
+      </button>
+    </div>
+
+    <script>
+      let selectedDate = "";
+      let selectedTime = "";
+      let movieTitle = "";
+      let theaterName = "";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const currentUser = localStorage.getItem("currentUser");
+        if (!currentUser) {
+          alert("Vui lòng đăng nhập để tiếp tục!");
+          window.location.href = "login.html";
+          return;
+        }
+        document.getElementById("userGreeting").textContent =
+          `👤 ${currentUser}`;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        movieTitle = urlParams.get("title") || "Chị Chị Em Em 3";
+        theaterName = urlParams.get("theater") || "Film Aeon Bình Tân";
+
+        document.getElementById("displayMovieTitle").textContent = movieTitle;
+        document.getElementById("displayTheater").textContent =
+          `📍 ${theaterName}`;
+      });
+
+      function selectDate(btn, dateStr) {
+        document
+          .querySelectorAll("#dateContainer .date-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedDate = dateStr;
+        checkReady();
+      }
+
+      function selectTime(btn, timeStr) {
+        document
+          .querySelectorAll("#timeContainer .time-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedTime = timeStr;
+        checkReady();
+      }
+
+      function checkReady() {
+        const btnNext = document.getElementById("btnNext");
+        if (selectedDate && selectedTime) {
+          btnNext.removeAttribute("disabled");
+        }
+      }
+
+      function goToSeatSelection() {
+        // Chuyển sang trang chọn ghế và truyền kèm thông tin qua URL
+        const url = `seat-selection.html?title=${encodeURIComponent(movieTitle)}&theater=${encodeURIComponent(theaterName)}&date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedTime)}`;
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>

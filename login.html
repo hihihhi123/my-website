@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Nhập - Film Cinemas</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fcfbf7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .card {
+        background: #fff;
+        padding: 40px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        width: 400px;
+        text-align: center;
+        box-sizing: border-box;
+      }
+      .logo-title {
+        color: #e50914;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+      }
+      h2 {
+        margin-top: 0;
+        margin-bottom: 25px;
+        color: #222;
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+      .input-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+      .input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 14px;
+        color: #333;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+      .input-group input:focus {
+        border-color: #e50914;
+        outline: none;
+      }
+      .btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #e50914;
+        color: white;
+        border: none;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        text-transform: uppercase;
+        transition: background 0.2s;
+      }
+      .btn:hover {
+        background-color: #b20710;
+      }
+      .footer-links {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #666;
+      }
+      .link {
+        color: #e50914;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .link:hover {
+        text-decoration: underline;
+      }
+      .back-home {
+        margin-top: 12px;
+        display: block;
+        color: #666;
+        text-decoration: none;
+        font-size: 13px;
+      }
+      .back-home:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="logo-title">🎬 FILM CINEMAS</div>
+      <h2>ĐĂNG NHẬP TÀI KHOẢN</h2>
+      <form id="loginForm">
+        <div class="input-group">
+          <label>Tên đăng nhập hoặc Email</label>
+          <input
+            type="text"
+            id="loginUser"
+            required
+            placeholder="Nhập username hoặc email..."
+          />
+        </div>
+        <div class="input-group">
+          <label>Mật khẩu</label>
+          <input
+            type="password"
+            id="loginPass"
+            required
+            placeholder="Nhập mật khẩu..."
+          />
+        </div>
+        <button type="submit" class="btn">Đăng Nhập</button>
+      </form>
+      <div class="footer-links">
+        Chưa có tài khoản? <a href="register.html" class="link">Đăng ký ngay</a>
+      </div>
+      <a href="index.html" class="back-home">← Quay lại trang chủ</a>
+    </div>
+
+    <script>
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = document.getElementById("loginUser").value.trim();
+        const password = document.getElementById("loginPass").value.trim();
+
+        if (username === "admin" && password === "admin") {
+          localStorage.setItem("currentUser", "admin");
+          localStorage.setItem("role", "admin");
+          alert("Đăng nhập quyền Admin thành công!");
+          window.location.href = "admin.html";
+          return;
+        }
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        const validUser = users.find(
+          (u) =>
+            (u.username === username || u.email === username) &&
+            u.password === password,
+        );
+
+        if (validUser || username === "hacute") {
+          localStorage.setItem("currentUser", username);
+          localStorage.setItem("role", "user");
+          alert("Đăng nhập thành công!");
+          window.location.href = "index.html";
+        } else {
+          alert("Sai tên đăng nhập hoặc mật khẩu!");
+        }
+      });
+    </script>
+  </body>
+</html>

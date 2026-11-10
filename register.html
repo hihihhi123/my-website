@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Ký - Film Cinemas</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fcfbf7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        width: 420px;
+        text-align: center;
+        box-sizing: border-box;
+        margin: 20px 0;
+      }
+      .logo-title {
+        color: #e50914;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        letter-spacing: 1px;
+      }
+      h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #222;
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+      .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+      }
+      .input-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        font-size: 13px;
+        color: #333;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+      .input-group input:focus {
+        border-color: #e50914;
+        outline: none;
+      }
+      .btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #e50914;
+        color: white;
+        border: none;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 15px;
+        text-transform: uppercase;
+        transition: background 0.2s;
+        margin-top: 5px;
+      }
+      .btn:hover {
+        background-color: #b20710;
+      }
+      .footer-links {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #666;
+      }
+      .link {
+        color: #e50914;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .link:hover {
+        text-decoration: underline;
+      }
+      .back-home {
+        margin-top: 10px;
+        display: block;
+        color: #666;
+        text-decoration: none;
+        font-size: 13px;
+      }
+      .back-home:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="logo-title">🎬 FILM CINEMAS</div>
+      <h2>ĐĂNG KÝ TÀI KHOẢN THÀNH VIÊN</h2>
+
+      <form id="registerForm">
+        <div class="input-group">
+          <label>Họ và tên</label>
+          <input
+            type="text"
+            id="regFullName"
+            required
+            placeholder="Nhập họ và tên của bạn..."
+          />
+        </div>
+        <div class="input-group">
+          <label>Email hoặc Số điện thoại</label>
+          <input
+            type="text"
+            id="regContact"
+            required
+            placeholder="Nhập email hoặc SĐT..."
+          />
+        </div>
+        <div class="input-group">
+          <label>Tên đăng nhập</label>
+          <input
+            type="text"
+            id="regUser"
+            required
+            placeholder="Chọn tên đăng nhập..."
+          />
+        </div>
+        <div class="input-group">
+          <label>Mật khẩu</label>
+          <input
+            type="password"
+            id="regPass"
+            required
+            placeholder="Nhập mật khẩu của bạn..."
+          />
+        </div>
+        <button type="submit" class="btn">Đăng Ký</button>
+      </form>
+
+      <div class="footer-links">
+        Đã có tài khoản? <a href="login.html" class="link">Đăng nhập ngay</a>
+      </div>
+      <a href="index.html" class="back-home">← Quay lại trang chủ</a>
+    </div>
+
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          const fullName = document.getElementById("regFullName").value.trim();
+          const contact = document.getElementById("regContact").value.trim();
+          const username = document.getElementById("regUser").value.trim();
+          const password = document.getElementById("regPass").value.trim();
+
+          let users = JSON.parse(localStorage.getItem("users")) || [];
+
+          // Kiểm tra trùng tên đăng nhập
+          const existingUser = users.find((u) => u.username === username);
+          if (existingUser) {
+            alert("Tên tài khoản này đã tồn tại! Vui lòng chọn tên khác.");
+            return;
+          }
+
+          // Lưu đầy đủ thông tin vào localStorage
+          users.push({ fullName, contact, username, password });
+          localStorage.setItem("users", JSON.stringify(users));
+
+          alert("Đăng ký thành công! Hãy chuyển sang trang đăng nhập.");
+          window.location.href = "login.html";
+        });
+    </script>
+  </body>
+</html>

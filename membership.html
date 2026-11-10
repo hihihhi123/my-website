@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ưu Đãi Thành Viên - Film Cinemas</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #141414 0%, #1f1f1f 100%);
+        color: #fff;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: rgba(20, 20, 20, 0.95);
+        border-bottom: 1px solid #333;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 22px;
+        color: #e50914;
+        letter-spacing: 1px;
+      }
+      .nav-links a {
+        color: #ccc;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      h2 {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 10px;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .subtitle {
+        text-align: center;
+        color: #aaa;
+        margin-bottom: 40px;
+        font-size: 15px;
+      }
+
+      .tier-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+      }
+      .tier-card {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        transition:
+          transform 0.2s,
+          border-color 0.2s;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      }
+      .tier-card:hover {
+        transform: translateY(-5px);
+        border-color: #e50914;
+      }
+      .tier-card h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+        color: #e50914;
+      }
+      .tier-card p {
+        color: #ccc;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .tier-badge {
+        display: inline-block;
+        background: #2a2a2a;
+        color: #ffc107;
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 13px;
+        border: 1px solid #444;
+      }
+
+      .benefit-box {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      }
+      .benefit-box h3 {
+        color: #fff;
+        margin-bottom: 15px;
+        font-size: 20px;
+        border-bottom: 2px solid #e50914;
+        padding-bottom: 8px;
+        display: inline-block;
+      }
+      .benefit-box ul {
+        padding-left: 20px;
+        color: #ccc;
+        line-height: 1.8;
+        font-size: 14px;
+      }
+      .benefit-box li {
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🎬 FILM CINEMAS</h1>
+      <div class="nav-links">
+        <a href="index.html">← Về Trang Chủ</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <h2>Chương Trình Thành Viên & Ưu Đãi</h2>
+      <p class="subtitle">
+        Đăng ký tài khoản hệ thống để tích điểm đổi quà và nhận hàng ngàn ưu đãi
+        hấp dẫn mỗi tuần!
+      </p>
+
+      <div class="tier-grid">
+        <div class="tier-card">
+          <h3>Thành Viên Bạc (Member)</h3>
+          <span class="tier-badge">Tích lũy từ 0 đ</span>
+          <p>
+            Tặng ngay 10% điểm thưởng vào tài khoản cho mỗi giao dịch đặt vé
+            trực tuyến.
+          </p>
+        </div>
+        <div class="tier-card">
+          <h3>Thành Viên Vàng (VIP)</h3>
+          <span class="tier-badge">Tích lũy từ 1.000.000 đ</span>
+          <p>
+            Giảm trực tiếp 10% giá vé vào các ngày Thứ Ba vui vẻ và ưu tiên chọn
+            ghế sớm.
+          </p>
+        </div>
+        <div class="tier-card">
+          <h3>Thành Viên Kim Cương (Diamond)</h3>
+          <span class="tier-badge">Tích lũy từ 3.000.000 đ</span>
+          <p>
+            Miễn phí bắp nước combo sinh nhật, tặng vé xem phim đặc quyền và ưu
+            đãi VIP toàn diện.
+          </p>
+        </div>
+      </div>
+
+      <div class="benefit-box">
+        <h3>Quyền Lợi & Điều Khoản Sử Dụng</h3>
+        <ul>
+          <li>
+            Mỗi 10.000đ chi tiêu thanh toán qua hệ thống sẽ được quy đổi thành 1
+            điểm thưởng tích lũy.
+          </li>
+          <li>
+            Điểm thưởng có giá trị sử dụng trong vòng 12 tháng kể từ ngày phát
+            sinh giao dịch gần nhất.
+          </li>
+          <li>
+            Thành viên có thể kiểm tra lịch sử đặt vé bất cứ lúc nào thông qua
+            Trang Quản Trị hoặc bảng điều khiển cá nhân.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

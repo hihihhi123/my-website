@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Quản Trị Hệ Thống - Admin Portal</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #141414 0%, #1f1f1f 100%);
+        color: #fff;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: rgba(20, 20, 20, 0.95);
+        border-bottom: 1px solid #333;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 22px;
+        color: #e50914;
+        letter-spacing: 1px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .nav-links a {
+        color: #ccc;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: all 0.2s;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+      .btn-logout-admin {
+        background-color: #e50914 !important;
+        color: #fff !important;
+      }
+      .btn-logout-admin:hover {
+        background-color: #b20710 !important;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      h2 {
+        color: #fff;
+        border-bottom: 2px solid #e50914;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Bảng hiển thị */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #1a1a1a;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        margin-bottom: 40px;
+        border: 1px solid #333;
+      }
+      th,
+      td {
+        padding: 14px 18px;
+        text-align: left;
+        border-bottom: 1px solid #333;
+        font-size: 14px;
+        color: #ddd;
+      }
+      th {
+        background-color: #242424;
+        color: #fff;
+        font-weight: 600;
+      }
+      tr:hover {
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+
+      .btn-watched {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 13px;
+        transition: background 0.2s;
+      }
+      .btn-watched:hover {
+        background-color: #218838;
+      }
+
+      .btn-delete {
+        background-color: #e50914;
+        color: white;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 13px;
+        transition: background 0.2s;
+      }
+      .btn-delete:hover {
+        background-color: #b20710;
+      }
+
+      /* Khung thêm phim */
+      .admin-card {
+        background: #1a1a1a;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        border: 1px solid #333;
+        margin-bottom: 40px;
+      }
+      .admin-card h3 {
+        margin-bottom: 20px;
+        color: #e50914;
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+      .form-group {
+        margin-bottom: 18px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 13px;
+        color: #ccc;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 12px;
+        background: #242424;
+        border: 1px solid #444;
+        color: #fff;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+      .form-group input:focus {
+        border-color: #e50914;
+        outline: none;
+      }
+
+      .btn-add {
+        background-color: #e50914;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .btn-add:hover {
+        background-color: #b20710;
+      }
+    </style>
+  </head>
+  <body>
+  <header>
+        <h1>🎬 QUẢN TRỊ HỆ THỐNG - ADMIN PORTAL</h1>
+        <div class="nav-links">
+            <!-- Thêm sự kiện xóa phiên admin khi bấm về trang chủ -->
+            <a href="index.html" onclick="localStorage.removeItem('isAdminLoggedIn')">← Về Trang Chủ</a>
+            <a href="#" class="btn-logout-admin" onclick="adminLogout()">🔒 Đăng Xuất Admin</a>
+        </div>
+    </header>
+
+    <div class="container">
+      <!-- PHẦN 1: QUẢN LÝ VÉ ĐẶT & GIẢI PHÓNG GHẾ -->
+      <h2>Quản Lý Vé Đặt & Duyệt Suất Chiếu</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Mã Vé</th>
+            <th>Tài Khoản Đặt</th>
+            <th>Tên Phim</th>
+            <th>Rạp & Suất Chiếu</th>
+            <th>Ghế Đã Chọn</th>
+            <th>Thao Tác</th>
+          </tr>
+        </thead>
+        <tbody id="ticketTableBody">
+          <!-- Dữ liệu vé đổ vào đây -->
+        </tbody>
+      </table>
+
+      <!-- PHẦN 2: QUẢN LÝ TÀI KHOẢN NGƯỜI DÙNG -->
+      <h2>Quản Lý Tài Khoản Người Dùng</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tên Tài Khoản (Username)</th>
+            <th>Vai Trò (Role)</th>
+            <th>Thao Tác Xóa Tài Khoản</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <!-- Dữ liệu người dùng đổ vào đây -->
+        </tbody>
+      </table>
+
+      <!-- PHẦN 3: THÊM PHIM MỚI RA TRANG CHỦ -->
+      <div class="admin-card">
+        <h3>Thêm Phim Mới Vào Hệ Thống</h3>
+        <form id="addMovieForm">
+          <div class="form-group">
+            <label>Tên Phim:</label>
+            <input
+              type="text"
+              id="movieTitle"
+              required
+              placeholder="Nhập tên phim mới..."
+            />
+          </div>
+          <div class="form-group">
+            <label>Tên Rạp Chiếu:</label>
+            <input
+              type="text"
+              id="movieTheater"
+              required
+              placeholder="Nhập tên rạp..."
+            />
+          </div>
+          <div class="form-group">
+            <label>Link Ảnh Poster (Unsplash / Online):</label>
+            <input
+              type="text"
+              id="moviePoster"
+              required
+              placeholder="Dán link ảnh poster vào đây..."
+            />
+          </div>
+          <button type="submit" class="btn-add">Thêm Phim Mới</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // KIỂM TRA BẢO MẬT: NẾU CHƯA ĐĂNG NHẬP BẰNG TRANG ADMIN RIÊNG BIỆT THÌ CHẶN NGAY LẬP TỨC
+        const isAdmin = localStorage.getItem("isAdminLoggedIn");
+
+        if (isAdmin !== "true") {
+          alert(
+            "Truy cập bị từ chối! Vui lòng đăng nhập bằng tài khoản quản trị viên.",
+          );
+          window.location.href = "admin-login.html";
+          return;
+        }
+
+        // Tải dữ liệu lên bảng quản trị
+        loadAdminTickets();
+        loadAdminUsers();
+
+        // Xử lý sự kiện thêm phim mới
+        document
+          .getElementById("addMovieForm")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            const title = document.getElementById("movieTitle").value.trim();
+            const theater = document
+              .getElementById("movieTheater")
+              .value.trim();
+            const poster = document.getElementById("moviePoster").value.trim();
+
+            let movies = JSON.parse(localStorage.getItem("movies")) || [];
+            movies.push({ id: Date.now(), title, theater, poster });
+            localStorage.setItem("movies", JSON.stringify(movies));
+
+            alert("Thêm phim thành công! Phim đã xuất hiện trên trang chủ.");
+            document.getElementById("addMovieForm").reset();
+            loadAdminTickets();
+          });
+      });
+
+      // Tải danh sách vé khách đã đặt (chỉ hiện vé chưa xem)
+      function loadAdminTickets() {
+        const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+        const tbody = document.getElementById("ticketTableBody");
+        tbody.innerHTML = "";
+
+        const activeTickets = tickets.filter((t) => t.status === "Chưa xem");
+
+        if (activeTickets.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #888;">Chưa có vé nào được đặt trong hệ thống.</td></tr>`;
+          return;
+        }
+
+        activeTickets.forEach((ticket) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+                    <td>#${ticket.id.toString().slice(-4)}</td>
+                    <td>${ticket.username}</td>
+                    <td><strong style="color: #fff;">${ticket.movieName}</strong></td>
+                    <td>${ticket.theater}</td>
+                    <td><span style="color: #e50914; font-weight: bold;">${ticket.seats.join(", ")}</span></td>
+                    <td>
+                        <button class="btn-watched" onclick="markAsWatched(${ticket.id})">✔ Đã xem phim</button>
+                    </td>
+                `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Khi Admin bấm "Đã xem phim" -> Đổi trạng thái vé thành "Đã xem" để giải phóng ghế cho người sau
+      function markAsWatched(ticketId) {
+        if (
+          confirm(
+            "Xác nhận khách đã xem phim? Ghế ngồi của suất chiếu này sẽ được giải phóng hoàn toàn.",
+          )
+        ) {
+          let tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+
+          tickets = tickets.map((t) => {
+            if (t.id === ticketId) {
+              t.status = "Đã xem";
+            }
+            return t;
+          });
+
+          localStorage.setItem("tickets", JSON.stringify(tickets));
+          alert("Đã hoàn tất! Ghế ngồi đã được giải phóng.");
+          loadAdminTickets();
+        }
+      }
+
+      // Tải danh sách tài khoản người dùng đã đăng ký
+      function loadAdminUsers() {
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const tbody = document.getElementById("userTableBody");
+        tbody.innerHTML = "";
+
+        let allUsers = [...users];
+        if (!allUsers.some((u) => u.username === "admin")) {
+          allUsers.unshift({ username: "admin", role: "admin" });
+        }
+
+        allUsers.forEach((user) => {
+          const tr = document.createElement("tr");
+          const isRootAdmin = user.username === "admin";
+          tr.innerHTML = `
+                    <td><strong>${user.username}</strong></td>
+                    <td><span style="color: ${isRootAdmin ? "#ffc107" : "#28a745"}; font-weight: bold;">${isRootAdmin ? "Quản trị viên (Admin)" : "Khách hàng (User)"}</span></td>
+                    <td>
+                        ${isRootAdmin ? '<span style="color: #666; font-style: italic;">Không thể xóa tài khoản gốc</span>' : `<button class="btn-delete" onclick="deleteUser('${user.username}')">🗑️ Xóa tài khoản</button>`}
+                    </td>
+                `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Chức năng xóa tài khoản người dùng
+      function deleteUser(username) {
+        if (
+          confirm(
+            `Bạn có chắc chắn muốn xóa tài khoản "${username}" khỏi hệ thống không?`,
+          )
+        ) {
+          let users = JSON.parse(localStorage.getItem("users")) || [];
+          users = users.filter((u) => u.username !== username);
+          localStorage.setItem("users", JSON.stringify(users));
+
+          alert(`Đã xóa tài khoản "${username}" thành công!`);
+          loadAdminUsers();
+        }
+      }
+
+      // Đăng xuất Admin
+      function adminLogout() {
+        if (
+          confirm("Bạn có chắc chắn muốn đăng xuất khỏi trang quản trị không?")
+        ) {
+          localStorage.removeItem("isAdminLoggedIn");
+          localStorage.removeItem("currentUser");
+          window.location.href = "admin-login.html";
+        }
+      }
+    </script>
+  </body>
+</html>

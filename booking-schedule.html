@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lịch Chiếu Phim - Film Cinemas</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .schedule-container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .date-picker-bar {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+      }
+      .date-box {
+        min-width: 70px;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        background: #f9f9f9;
+      }
+      .date-box.active {
+        background: #e71a0f;
+        color: #fff;
+        border-color: #e71a0f;
+      }
+      .cinema-branch {
+        margin-bottom: 25px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+      }
+      .time-slot-btn {
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        background: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+        font-weight: bold;
+        transition: 0.2s;
+      }
+      .time-slot-btn:hover {
+        border-color: #e71a0f;
+        color: #e71a0f;
+      }
+      .time-slot-btn.selected {
+        background: #e71a0f;
+        color: #fff;
+        border-color: #e71a0f;
+      }
+      .confirm-box {
+        margin-top: 30px;
+        background: #fdfcf0;
+        padding: 20px;
+        border: 1px dashed #e71a0f;
+        border-radius: 6px;
+        text-align: center;
+        display: none;
+      }
+    </style>
+  </head>
+  <body style="background: #f4f4f4">
+    <header class="header">
+      <div class="top-bar">
+        <div class="container top-bar-container">
+          <div class="top-banner-ad">
+            <span>🎬 HỆ THỐNG ĐẶT VÉ VÀ XEM PHIM CHẤT LƯỢNG CAO</span>
+          </div>
+          <div class="top-links">
+            <a href="index.html"><i class="fa-solid fa-house"></i> TRANG CHỦ</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="schedule-container">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+        "
+      >
+        <h2 id="schedule-movie-title" style="color: #333">
+          LỊCH CHIẾU - ĐANG TẢI...
+        </h2>
+        <button
+          onclick="history.back()"
+          class="btn btn-secondary"
+          style="padding: 6px 12px; font-size: 0.9rem"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Quay Lại
+        </button>
+      </div>
+      <div class="separator-line" style="margin-bottom: 20px"></div>
+
+      <!-- Thanh chọn ngày -->
+      <div class="date-picker-bar" id="date-picker-bar"></div>
+
+      <!-- Danh sách rạp & suất chiếu -->
+      <div id="cinemas-schedule-list">
+        <div class="cinema-branch">
+          <h4 style="color: #e71a0f; margin-bottom: 10px">
+            <i class="fa-solid fa-location-dot"></i> Film Aeon Bình Tân
+          </h4>
+          <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px">
+            Định dạng: Rạp 2D Phụ đề Anh
+          </p>
+          <div id="branch-binh-tan-times">
+            <button
+              class="time-slot-btn"
+              onclick="selectTimeSlot(this, 'Film Aeon Bình Tân', '18:00')"
+            >
+              18:00
+            </button>
+            <button
+              class="time-slot-btn"
+              onclick="selectTimeSlot(this, 'Film Aeon Bình Tân', '19:10')"
+            >
+              19:10
+            </button>
+            <button
+              class="time-slot-btn"
+              onclick="selectTimeSlot(this, 'Film Aeon Bình Tân', '20:40')"
+            >
+              20:40
+            </button>
+            <button
+              class="time-slot-btn"
+              onclick="selectTimeSlot(this, 'Film Aeon Bình Tân', '22:10')"
+            >
+              22:10
+            </button>
+          </div>
+        </div>
+        <div class="cinema-branch">
+          <h4 style="color: #e71a0f; margin-bottom: 10px">
+            <i class="fa-solid fa-location-dot"></i> Film Aeon Tân Phú
+          </h4>
+          <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px">
+            Định dạng: Rạp 2D Phụ đề Anh
+          </p>
+          <div id="branch-tan-phu-times">
+            <button
+              class="time-slot-btn"
+              onclick="selectTimeSlot(this, 'Film Aeon Tân Phú', '18:30')"
+            >
+              18:30
+            </button>
+            <button
+              class="time-slot-btn"
+              onclick="selectTimeSlot(this, 'Film Aeon Tân Phú', '19:50')"
+            >
+              19:50
+            </button>
+            <button
+              class="time-slot-btn"
+              onclick="selectTimeSlot(this, 'Film Aeon Tân Phú', '21:30')"
+            >
+              21:30
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bảng xác nhận suất chiếu xuất hiện khi chọn giờ -->
+      <div id="confirm-box" class="confirm-box">
+        <h3 style="margin-bottom: 10px; color: #333">
+          <i class="fa-solid fa-ticket"></i> Bạn đã chọn suất chiếu:
+        </h3>
+        <p
+          id="selected-info-text"
+          style="
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #e71a0f;
+            margin-bottom: 15px;
+          "
+        ></p>
+        <button
+          onclick="proceedToSeatSelection()"
+          class="btn btn-primary"
+          style="padding: 12px 30px; font-size: 1rem"
+        >
+          <i class="fa-solid fa-circle-check"></i> XÁC NHẬN & CHỌN GHẾ NGỒI
+        </button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2026 - Đồ án Lập trình Web | Hệ Thống Đặt Vé Xem Phim</p>
+    </footer>
+
+    <script>
+      let selectedMovieTitle = "Chị Chị Em Em 3";
+      let selectedDateStr = "30/10/2026 (Thứ Sáu)";
+      let selectedCinema = "";
+      let selectedTime = "";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get("id") || "chi-chi-em-em-3";
+
+        // Lấy tên phim từ danh sách lưu trữ
+        let movies = JSON.parse(localStorage.getItem("admin_movies")) || [];
+        const found = movies.find((m) => m.id === movieId);
+        if (found) {
+          selectedMovieTitle = found.title;
+        }
+        document.getElementById("schedule-movie-title").textContent =
+          `LỊCH CHIẾU - ${selectedMovieTitle.toUpperCase()}`;
+
+        // Tạo thanh chọn 7 ngày tới
+        const dateBar = document.getElementById("date-picker-bar");
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const months = [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08",
+          "09",
+          "10",
+          "11",
+          "12",
+        ];
+
+        let today = new Date();
+        for (let i = 0; i < 7; i++) {
+          let d = new Date();
+          d.setDate(today.getDate() + i);
+          let dayName = days[d.getDay()];
+          let dateNum = d.getDate();
+          let monthStr = months[d.getMonth()];
+          let fullDateFormatted = `${dateNum}/${monthStr}/2026`;
+
+          const box = document.createElement("div");
+          box.className = `date-box ${i === 2 ? "active" : ""}`; // Mặc định chọn ngày thứ 3 (giống ảnh mẫu)
+          if (i === 2) selectedDateStr = fullDateFormatted;
+
+          box.innerHTML = `
+                    <div style="font-size: 0.8rem; color: #666;">Tháng ${monthStr}</div>
+                    <div style="font-size: 1.2rem; font-weight: bold; margin: 3px 0;">${dateNum}</div>
+                    <div style="font-size: 0.85rem; font-weight: bold;">${dayName}</div>
+                `;
+          box.onclick = () => {
+            document
+              .querySelectorAll(".date-box")
+              .forEach((b) => b.classList.remove("active"));
+            box.classList.add("active");
+            selectedDateStr = fullDateFormatted;
+            updateConfirmText();
+          };
+          dateBar.appendChild(box);
+        }
+      });
+
+      function selectTimeSlot(btn, cinema, time) {
+        document
+          .querySelectorAll(".time-slot-btn")
+          .forEach((b) => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        selectedCinema = cinema;
+        selectedTime = time;
+
+        document.getElementById("confirm-box").style.display = "block";
+        updateConfirmText();
+      }
+
+      function updateConfirmText() {
+        if (selectedCinema && selectedTime) {
+          document.getElementById("selected-info-text").innerHTML =
+            `${selectedMovieTitle} — ${selectedCinema} — Ngày: ${selectedDateStr} — Suất: ${selectedTime}`;
+        }
+      }
+
+      function proceedToSeatSelection() {
+        // Lưu thông tin tạm thời vào sessionStorage để truyền sang trang chọn ghế
+        const bookingData = {
+          movieName: selectedMovieTitle,
+          cinema: selectedCinema,
+          date: selectedDateStr,
+          showtime: `${selectedTime} - ${selectedDateStr}`,
+        };
+        sessionStorage.setItem("temp_booking", JSON.stringify(bookingData));
+        window.location.href = "seat-selection.html";
+      }
+    </script>
+  </body>
+</html>

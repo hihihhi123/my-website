@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi Tiết Phim - Film Cinemas</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #141414 0%, #1f1f1f 100%);
+        color: #fff;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: rgba(20, 20, 20, 0.95);
+        border-bottom: 1px solid #333;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 22px;
+        color: #e50914;
+        letter-spacing: 1px;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .nav-links a {
+        color: #ccc;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #1a1a1a;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid #333;
+        display: flex;
+        gap: 35px;
+        flex-wrap: wrap;
+      }
+      .movie-poster {
+        flex: 1;
+        min-width: 280px;
+        max-width: 320px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        border: 1px solid #444;
+      }
+      .movie-poster img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .movie-info {
+        flex: 2;
+        min-width: 300px;
+      }
+      .movie-info h2 {
+        font-size: 32px;
+        color: #fff;
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+      .movie-info p.theater {
+        color: #e50914;
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      .meta-list {
+        list-style: none;
+        margin-bottom: 20px;
+        color: #ccc;
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .meta-list li {
+        margin-bottom: 5px;
+      }
+      .meta-list strong {
+        color: #fff;
+      }
+
+      .synopsis-box {
+        background: #242424;
+        padding: 15px 20px;
+        border-radius: 6px;
+        border-left: 4px solid #e50914;
+        color: #ddd;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+      .synopsis-box h4 {
+        color: #fff;
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      .btn-buy-ticket {
+        background-color: #e50914;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition:
+          background 0.2s,
+          transform 0.1s;
+        box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+        letter-spacing: 0.5px;
+      }
+      .btn-buy-ticket:hover {
+        background-color: #b20710;
+        transform: translateY(-1px);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🎬 FILM CINEMAS</h1>
+      <div class="nav-links">
+        <a href="index.html">← Trang Chủ</a>
+        <a href="admin.html" style="color: #e50914">Trang Admin</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="movie-poster">
+        <img
+          id="detailPoster"
+          src=""
+          alt="Poster Phim"
+          onerror="
+            this.src = 'https://via.placeholder.com/300x420?text=Phong+Cảnh'
+          "
+        />
+      </div>
+      <div class="movie-info">
+        <h2 id="detailTitle">Đang tải tên phim...</h2>
+        <p class="theater" id="detailTheater">📍 Đang tải rạp chiếu...</p>
+
+        <ul class="meta-list">
+          <li>
+            <strong>Đạo diễn:</strong>
+            <span id="detailDirector">Đang cập nhật...</span>
+          </li>
+          <li>
+            <strong>Diễn viên:</strong>
+            <span id="detailCast">Đang cập nhật...</span>
+          </li>
+          <li>
+            <strong>Thể loại:</strong>
+            <span id="detailGenre">Điện Ảnh, Phong Cảnh</span>
+          </li>
+          <li><strong>Khởi chiếu:</strong> 02/11/2026</li>
+          <li>
+            <strong>Thời lượng:</strong>
+            <span id="detailDuration">120 phút</span>
+          </li>
+          <li>
+            <strong style="color: #e50914">Rated:</strong>
+            <span id="detailRated"
+              >T16 - Phim dành cho khán giả từ 16 tuổi trở lên</span
+            >
+          </li>
+        </ul>
+
+        <div class="synopsis-box">
+          <h4>Nội Dung Phim</h4>
+          <p id="detailDesc">
+            Bộ phim đưa khán giả đắm chìm vào những khung cảnh thiên nhiên hùng
+            vĩ và nên thơ, kết hợp cốt truyện cảm động.
+          </p>
+        </div>
+
+        <!-- Nút bấm chuyển sang chọn ngày giờ -->
+        <a href="#" id="btnChooseShowtime" class="btn-buy-ticket"
+          >🎟️ MUA VÉ NGAY (CHỌN SUẤT CHIẾU)</a
+        >
+      </div>
+    </div>
+
+    <script>
+      // Kho dữ liệu thông tin chi tiết riêng cho từng phim
+      const movieDatabase = {
+        "Chị Chị Em Em 3": {
+          director: "Nguyễn Hữu Hoàng",
+          cast: "Kỳ Duyên, Steven Nguyễn, Chi Pu, Quốc Anh",
+          genre: "Tâm Lý, Tình Cảm, Giật Gân",
+          duration: "120 phút",
+          rated: "T18 - Phim dành cho khán giả từ 18 tuổi trở lên",
+          synopsis:
+            "Bộ phim tiếp tục khai thác những góc khuất đầy kịch tính và cảm xúc trong quan hệ tình cảm xã hội hiện đại giữa những khung cảnh thiên nhiên tuyệt đẹp.",
+        },
+        "Lật Mặt 7": {
+          director: "Lý Hải",
+          cast: "Thanh Hương, Trương Minh Cường, Đinh Y Nhung, Quách Ngọc Tuyên",
+          genre: "Gia Đình, Tâm Lý, Đời Sống",
+          duration: "138 phút",
+          rated:
+            "K - Phim được phổ biến đến người xem dưới 13 tuổi với điều kiện xem cùng cha mẹ",
+          synopsis:
+            "Câu chuyện vô cùng cảm động về tình mẫu tử, sự hy sinh thầm lặng của người mẹ già và tấm lòng hiếu thảo của những người con trong gia đình.",
+        },
+        "Mai - Trấn Thành": {
+          director: "Trấn Thành",
+          cast: "Phương Anh Đào, Tuấn Trần, NSND Ngọc Giàu, Khả Như",
+          genre: "Tâm Lý, Lãng Mạn, Đời Thường",
+          duration: "131 phút",
+          rated: "T18 - Phim dành cho khán giả từ 18 tuổi trở lên",
+          synopsis:
+            "Hành trình đầy trắc trở nhưng cũng vô cùng lãng mạn của Mai - một cô gái có quá khứ nhiều vết thương lòng và câu chuyện tình yêu đầy cảm xúc.",
+        },
+        "Đất Rừng Phương Nam": {
+          director: "Nguyễn Quang Dũng",
+          cast: "Hạo Khang, Tuấn Trần, Mai Tài Phến, Bùi Thạc Chuyên",
+          genre: "Phiêu Lưu, Lịch Sử, Chính Kịch",
+          duration: "110 phút",
+          rated: "T13 - Phim được phổ biến đến khán giả từ đủ 13 tuổi trở lên",
+          synopsis:
+            "Hành trình phiêu lưu tìm cha của cậu bé An giữa khung cảnh thiên nhiên miền Tây Nam Bộ kỳ vĩ, hào hùng trong những năm tháng kháng chiến.",
+        },
+        "Avatar 3: Hỏa Tông Đồ": {
+          director: "James Cameron",
+          cast: "Sam Worthington, Zoe Saldaña, Sigourney Weaver",
+          genre: "Khoa Học Viễn Tưởng, Hành Động, Phiêu Lưu",
+          duration: "190 phút",
+          rated: "T13 - Phim được phổ biến đến khán giả từ đủ 13 tuổi trở lên",
+          synopsis:
+            "Tiếp nối hành trình tại hành tinh Pandora, Jake Sully và Neytiri đối mặt với một bộ lạc Na'vi hoàn toàn mới - Tộc Người Lửa đầy bí ẩn.",
+        },
+        "Avengers: Secret Wars": {
+          director: "Marvel Studios",
+          cast: "Dàn diễn viên vũ trụ điện ảnh Marvel",
+          genre: "Hành Động, Siêu Anh Hùng, Viễn Tưởng",
+          duration: "150 phút",
+          rated: "T13 - Phim được phổ biến đến khán giả từ đủ 13 tuổi trở lên",
+          synopsis:
+            "Trận chiến đỉnh cao hội tụ tất cả các siêu anh hùng từ các vũ trụ song song để bảo vệ sự tồn vong của đa vũ trụ trước hiểm họa diệt vong.",
+        },
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const title = urlParams.get("title") || "Chị Chị Em Em 3";
+        const theater = urlParams.get("theater") || "Film Aeon Bình Tân";
+        const poster =
+          urlParams.get("poster") ||
+          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400";
+
+        // Hiển thị thông tin cơ bản
+        document.getElementById("detailTitle").textContent = title;
+        document.getElementById("detailTheater").textContent = `📍 ${theater}`;
+        document.getElementById("detailPoster").src = poster;
+
+        // Lấy thông tin chi tiết tương ứng với tên phim, nếu là phim do admin thêm thì dùng thông tin mặc định
+        const movieInfo = movieDatabase[title] || {
+          director: "Đang cập nhật...",
+          cast: "Đang cập nhật...",
+          genre: "Điện Ảnh, Phong Cảnh",
+          duration: "120 phút",
+          rated: "T16 - Phim dành cho khán giả từ 16 tuổi trở lên",
+          synopsis:
+            "Bộ phim mang đến những khung hình phong cảnh thiên nhiên hùng vĩ và trải nghiệm điện ảnh đặc sắc.",
+        };
+
+        document.getElementById("detailDirector").textContent =
+          movieInfo.director;
+        document.getElementById("detailCast").textContent = movieInfo.cast;
+        document.getElementById("detailGenre").textContent = movieInfo.genre;
+        document.getElementById("detailDuration").textContent =
+          movieInfo.duration;
+        document.getElementById("detailRated").textContent = movieInfo.rated;
+        document.getElementById("detailDesc").textContent = movieInfo.synopsis;
+
+        // Gắn link nút Mua Vé ngay trỏ sang trang chọn suất chiếu (select-showtime.html) kèm theo thông tin phim
+        const showtimeUrl = `select-showtime.html?title=${encodeURIComponent(title)}&theater=${encodeURIComponent(theater)}`;
+        document.getElementById("btnChooseShowtime").href = showtimeUrl;
+      });
+    </script>
+  </body>
+</html>
